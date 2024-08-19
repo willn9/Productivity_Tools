@@ -1,16 +1,14 @@
-# This tool will take an email header saved in text file 
-# and convert it into an 
-# an email list in the form of a csv file with 3 columns 
-# for first_name, last_name and email  
-# Your contacts file should be named 
-# raw_contacts.txt or change file_path below
+# This tool will take an email header saved in a text file 
+# and convert it into an email list in the form of a CSV file 
+# with 3 columns for first_name, last_name, and email.  
+# Your contacts file should be named raw_contacts.txt or change file_path below.
 
-# importing libraries
+# Importing libraries
 import re
 import csv
 
 # Read the content of the text file
-file_path = 'raw_contact.txt'
+file_path = 'raw_contacts.txt'
 with open(file_path, 'r') as file:
     content = file.read()
 
@@ -24,11 +22,12 @@ def split_email(email):
     return first_name, last_name, email
 
 # Write the extracted data to a CSV file
-with open('contacts.csv', 'w', newline='') as csvfile:
+output_file_path = 'new_contacts.csv'
+with open(output_file_path, 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['First Name', 'Last Name', 'Email'])
     for email in emails:
         first_name, last_name, email = split_email(email)
         writer.writerow([first_name, last_name, email])
 
-print("Emails have been extracted and saved to contacts.csv")
+print(f"Emails have been extracted and saved to {output_file_path}")
